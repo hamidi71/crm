@@ -14,17 +14,19 @@
 	<c:out value="nomHome"></c:out>
 	<c:out value="${nomHome}"></c:out>
 	${ageHome} --%>
-	<table>
+	<!-- <a href="domain?action=addDomain"> AddDomain </a> -->
+	<table border="1">
 		<thead>
 			<tr>
-				<th>IdDomain</th><th>Name</th>
+				<th>IdDomain</th><th>Name</th><th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${listDomain}" var="d">
 			<tr>
 				<td>${d.idDomain}</td>
-				<td>${d.name}</td>			
+				<td>${d.name}</td>	
+				<td><a href="domain?action=delete&id=${d.idDomain}">delete</a></td>		
 			</tr>
 		</c:forEach>
 		</tbody>

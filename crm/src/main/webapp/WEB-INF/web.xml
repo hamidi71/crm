@@ -21,7 +21,7 @@
 			</servlet>
 			<servlet-mapping>
 				<servlet-name>DomainServletXml</servlet-name>
-				<url-pattern>/Nabil</url-pattern>
+				<url-pattern>/domain</url-pattern>
 			</servlet-mapping>
 			
 			<welcome-file-list>
