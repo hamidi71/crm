@@ -41,4 +41,10 @@ public class DomainServiceImpl implements IDomainService {
 		domain.delete(id);
 		
 	}
+
+	@Override
+	public Domains findOne(Long id) {
+		Domains d=domain.findOne(id);
+		return d;
+	}
 }

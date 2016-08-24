@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>AddDomain</title>
+<title>UpdateDomain</title>
 </head>
 <body>
-	<form action="domain?action=saveDomain" method="post">
-		Name: <input type="text" name="nameInput" />
-		 <button type="submit" >Save</button>
+	<form action="domain?action=updateDomain" method="post">
+			  <input type="hidden" name="idInput" value="${domain.idDomain}"/>
+		Name: <input type="text" name="nameInput" value="${domain.name}"/>
+		 <button type="submit" >Update</button>
 	
 	</form>
 	

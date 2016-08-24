@@ -18,7 +18,7 @@
 	<table border="1">
 		<thead>
 			<tr>
-				<th>IdDomain</th><th>Name</th><th>Delete</th>
+				<th>IdDomain</th><th>Name</th><th>Delete</th><th>Edit</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,7 +26,8 @@
 			<tr>
 				<td>${d.idDomain}</td>
 				<td>${d.name}</td>	
-				<td><a href="domain?action=delete&id=${d.idDomain}">delete</a></td>		
+				<td><a href="domain?action=delete&id=${d.idDomain}">delete</a></td>	
+				<td><a href="domain?action=edit&id=${d.idDomain}">Edit</a> </td>	
 			</tr>
 		</c:forEach>
 		</tbody>

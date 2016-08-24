@@ -9,4 +9,5 @@ public interface IDomainService {
 	public void save(Domains domainSa);
 	public void update(Domains domainUp);
 	public void delete(Long id);
+	public Domains findOne(Long id);
 }

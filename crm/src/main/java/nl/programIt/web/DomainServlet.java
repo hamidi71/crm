@@ -11,6 +11,7 @@ import nl.programIt.LoaderClass;
 import nl.programIt.entities.Domains;
 import nl.programIt.service.interfaces.IDomainService;
 
+import org.dom4j.dom.DOMAttributeNodeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,15 @@ public class DomainServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		if(req.getParameter("action").equals("updateDomain")){
+			String name=req.getParameter("nameInput");
+			Long id=Long.valueOf(req.getParameter("idInput"));
+			Domains d=domainnService.findOne(id);
+			d.setName(name);
+			domainnService.update(d);
+			req.getRequestDispatcher("index.html").forward(req, resp);
+		}
+		
 		if(req.getParameter("action").equals("saveDomain")){
 			String namServlet=req.getParameter("nameInput");			
 			Domains domain=new Domains();
@@ -43,6 +53,13 @@ public class DomainServlet extends HttpServlet{
 		req.setAttribute("nomHome", firstName);
 		req.setAttribute("ageHome", leeftijd);*/
 		//System.out.println(domainnService.domains().size());
+		if(req.getParameter("action").equals("edit")){
+			long id=Long.valueOf(req.getParameter("id"));
+			Domains d=domainnService.findOne(id);
+			req.setAttribute("domain", d);
+			req.getRequestDispatcher("edit.jsp").forward(req, resp);
+			
+		}
 		if(req.getParameter("action").equals("list")){
 			req.setAttribute("listDomain",domainnService.domains());
 			req.getRequestDispatcher("home.jsp").forward(req, resp);
@@ -57,3 +74,7 @@ public class DomainServlet extends HttpServlet{
 		}
 	}
 }
+
+
+
+
