@@ -2,6 +2,7 @@ package nl.programIt.entities;
 
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -88,6 +89,7 @@ public class Entreprises {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	@Column(name="logo")
 	public String getLog() {
 		return log;
 	}
@@ -110,7 +112,8 @@ public class Entreprises {
 	//1->*   @OneToMany
 	//*->1   @ManyToOne
 	//*->*   @ManyToMany
-	@ManyToOne(fetch=FetchType.LAZY)
+	//@ManyToOne(fetch=FetchType.LAZY) was fout bij jpa
+	@ManyToOne
 	@JoinColumn(name="idDomain")
 	public Domains getDomain() {
 		return domain;

@@ -19,32 +19,11 @@ public class DomainServiceImpl implements IDomainService {
 	private IDomainRepository domain;
 	
 	@Override
-	public List<Domains> domains() {
-		
+	public List<Domains> domains() {		
 		return domain.findAll();
 	}
-
-	@Override
-	public void save(Domains domainSa) {
-		
-		domain.save(domainSa);
-	}
-
-	@Override
-	public void update(Domains domainUp) {
-		domain.saveAndFlush(domainUp);
-		
-	}
-
-	@Override
-	public void delete(Long id) {
-		domain.delete(id);
-		
-	}
-
-	@Override
-	public Domains findOne(Long id) {
-		Domains d=domain.findOne(id);
-		return d;
-	}
 }
+
+	
+
+	
