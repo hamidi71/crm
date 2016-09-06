@@ -26,6 +26,12 @@ public class EntrepriseController {
 	 	model.addAttribute("listEntreprises", service.entreprises());	 	
 		return "entreprisesFolder/list-entreprise";
 	}
+	@RequestMapping("/bedrijvenlijst.fes")
+	public String bedrijflijsten(Model model){
+		//bedrijfLijst zit folder bedrijvenlist.jsp
+		model.addAttribute("bedrijflijst", service.entreprises());		
+		return "entreprisesFolder/bedrijvenLijst";		
+	}	
 	
 	@RequestMapping("/add-en")
 	public String addEntrepise(Model model){
