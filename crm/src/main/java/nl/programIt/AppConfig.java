@@ -13,14 +13,14 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration//Anotation Spring deze is contener
+@Configuration//Anotation Spring deze is container
 @ComponentScan(basePackages={"nl.programIt"})
 @EnableJpaRepositories(basePackages="nl.programIt.repository")
 @EnableTransactionManagement//Activation De add remove update
-public class AppConfig {
-	
-	@Bean//decalaration als een bean
-	//class BasicDataSource
+public class AppConfig {	
+	@Bean//decalareren als een bean
+	//Retour type is :class BasicDataSource 
+	//naam methode: datasource()
 	public DataSource dataSource(){
 		BasicDataSource basic=new BasicDataSource();
 		basic.setUrl("jdbc:mysql://localhost:3306/db_crm");
@@ -30,6 +30,8 @@ public class AppConfig {
 		return basic;
 	}
 	
+	//Retour type is :class LocalContainerEntityManagerFactoryBean 
+	//naam methode: entityManagerFactory()
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
 		LocalContainerEntityManagerFactoryBean local=new LocalContainerEntityManagerFactoryBean();

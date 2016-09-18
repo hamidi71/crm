@@ -2,6 +2,8 @@ package nl.programIt;
 
 import java.util.Locale;
 
+import nz.net.ultraq.thymeleaf.LayoutDialect;
+
 import org.hibernate.property.Getter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,18 +23,16 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 //zie mvc-context
 @Configuration //normaal config
-@EnableWebMvc //countneur spring mvc
+@EnableWebMvc //countoneur spring mvc
 @ComponentScan(basePackages="nl.programIt.controllers")
-public class WebAppConfig extends WebMvcConfigurerAdapter{
-	
-	/*<mvc:resources location="/resources/public/" mapping="
-		/resources/**"/>*/
+public class WebAppConfig extends WebMvcConfigurerAdapter{	
+	/*<mvc:resources location="/resources/public/" mapping="/resources/**"/>*/
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/public/");
 	}
-//config Theamleaf
-	//zoekt thymleafplaats
+//start Thymeleaf specific configuration
+    //zoekt thymleaflocatie
 	@Bean(name="templateResolver")
 	public ServletContextTemplateResolver templateResolver(){
 		ServletContextTemplateResolver resolver=new ServletContextTemplateResolver();
@@ -45,18 +45,20 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
 	@Bean(name="templateEngine")
 	public SpringTemplateEngine templateEngine(){
 		SpringTemplateEngine engine=new SpringTemplateEngine();
-		engine.setTemplateResolver(templateResolver());		
+		engine.setTemplateResolver(templateResolver());//zie methode tamplateResolver()		
+		engine.addDialect(new LayoutDialect());//Template:thymeleaf-layout-dialect
 		return engine;	
 	}
-	//resolver analyset werkt aleen met thymeleaf
+	//resolver analyset werkt alleen met thymeleaf
 	@Bean(name="viewResolver")	
 	 public ThymeleafViewResolver getViewResolver(){
     	ThymeleafViewResolver resolver = new ThymeleafViewResolver(); 
-    	resolver.setTemplateEngine(templateEngine());
+    	resolver.setTemplateEngine(templateEngine());//roept methde templateEngine()
 	return resolver;
     }	
+//end Thymeleaf specific configuration
 	
-//Hier onde zijn de beans van i18n(internationalisation) voor de taals
+//Hieronder zijn de beans van i18n(internationalisation) voor de tallen
 	@Bean
 	public ResourceBundleMessageSource messageSource(){
 		ResourceBundleMessageSource messageS =new ResourceBundleMessageSource();
@@ -82,12 +84,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
 		return changeInterceptor;
 	}
 	
-	@Override
+	@Override//InterceptorRegistry zoekt proprety
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(this.localeChangeInterceptor());
-	}
-	
-	
+	}	
 	
 	
 }

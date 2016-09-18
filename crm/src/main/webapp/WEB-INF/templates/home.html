@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-<meta charset="ISO-8859-1"/>
-<title>HomeThymeleaf</title>
-</head>
-<body>
-    <h1 th:text="#{header.entreprise}"></h1>
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layoutTemplate">
+<div layout:fragment="content">
+	<h1>Hier is de Home page van crm project</h1>
+</div>
 </html>

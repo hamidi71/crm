@@ -1,9 +1,12 @@
 package nl.programIt.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import nl.programIt.entities.Contacts;
 import nl.programIt.repository.IContactRepository;
 import nl.programIt.service.interfaces.IContactService;
@@ -33,6 +36,11 @@ public class ContactServiceImpl implements IContactService {
 	public void addContact(Contacts contact) {
 		contactRepository.save(contact);
 
+	}
+
+	@Override
+	public List<Contacts> findAllContancts() {			
+		return contactRepository.findAll();
 	}
 
 }

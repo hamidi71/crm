@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layoutTemplate">
+<div layout:fragment="content">
+
+	<form class="form-horizontal" action="#" th:action="@{/save-en}" th:object="${entreprise}" method="post" >
+			<div class="form-group">
+				<label class="col-sm-3 control-label" th:text="#{addEntreprise.name}"></label>
+				<div class="col-sm-6">
+					<input class="form-control" th:field="*{name}" th:placeholder="#{addEntreprise.placeholderName}"/>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label" th:text="#{addEntreprise.type}"></label>
+				<div class="col-sm-6">
+					<input class="form-control" th:field="*{type}" th:placeholder="#{addEntreprise.placeholderType}"/>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label" th:text="#{addEntreprise.taille}"></label>
+				<div class="col-sm-6">
+					<input class="form-control" th:field="*{taille}" th:placeholder="#{addEntreprise.placeholderTaille}"/>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label" th:text="#{addEntreprise.turnover}"></label>
+				<div class="col-sm-6">
+					<input class="form-control" th:field="*{turnover}" th:placeholder="#{addEntreprise.placeholderTurnover}"/>
+				</div>				
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label" th:text="#{addEntreprise.address}"></label>
+				<div class="col-sm-6">
+					<textarea class="form-control" th:field="*{address}" rows="5" cols="4"
+					 th:placeholder="#{addEntreprise.placeholderAddress}"></textarea>					
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label" th:text="#{addEntreprise.description}"></label>
+				<div class="col-sm-6">
+					<textarea class="form-control" th:field="*{description}" rows="5" cols="4"
+					th:placeholder="#{addEntreprise.placeholderDescription}"></textarea>					
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label" th:text="#{addEntreprise.email}"></label>
+				<div class="col-sm-6">
+					<input class="form-control" th:field="*{email}" th:placeholder="#{addEntreprise.placeholderEmail}"/>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label" th:text="#{addEntreprise.password}"></label>
+				<div class="col-sm-6">
+					<input type="password" class="form-control" th:field="*{password}" />
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label" th:text="#{addEntreprise.domain}"></label>
+				<div class="col-sm-6">
+					<select class="form-control" th:field="*{domain.idDomain}" >					
+							<option th:each="list :${listDomain}" th:value="${list.idDomain}" th:text="${list.name}"/>				
+						
+					</select>					 
+				</div>
+			</div>
+				<input type="hidden" th:field="*{role}" value="en" />
+				<input type="hidden" th:field="*{log}" value="img"/>	
+			
+			<div class="form-group">
+    			<div class="col-sm-offset-3 col-sm-4 ">
+     		 		<button type="submit" class="btn btn-success" th:text="#{addEntreprise.save}"></button>
+    			</div>
+  			</div>							
+		</form>
+</div>
+</html>

@@ -23,8 +23,9 @@ public class EntrepriseController {
 	
 	@RequestMapping("/entreprises")
 	public String lisEntreprises(Model model){
-	 	model.addAttribute("listEntreprises", service.entreprises());	 	
-		return "entreprisesFolder/list-entreprise";
+	 	model.addAttribute("listEntreprises", service.entreprises());
+	 	return "entreprisesFolder/list-entreprise";
+	
 	}
 	@RequestMapping("/bedrijvenlijst.fes")
 	public String bedrijflijsten(Model model){
@@ -43,15 +44,19 @@ public class EntrepriseController {
 	@RequestMapping(value="/save-en",method=RequestMethod.POST)
 	public String saveEntreprise(@ModelAttribute("entreprise") Entreprises e,Model model){
 		service.addEntreprise(e);
-		return "redirect:/entreprises";
-		
+		return "redirect:/entreprises";		
 		//model.addAttribute("listEntreprises", service.entreprises());	 	
-		//return "entreprisesFolder/list-entreprise";		
+		//return "entreprisesFolder/list-entreprise";
 		
 	}
-	@RequestMapping("/profil-en")
+	/*@RequestMapping("/profil-en")
 	public String profil(@RequestParam("idList") Long idp,Model model){		
-		model.addAttribute("entrepriseProfilJsp", service.findEntreprise(idp));
+		model.addAttribute("entrepriseProfilThymeleaf", service.findEntreprise(idp));
+		return "entreprisesFolder/profil-entreprise";
+	} */
+	@RequestMapping("/profil-en/{idList}")
+	public String profil(@PathVariable Long idList ,Model model){		
+		model.addAttribute("entrepriseProfilThymeleaf", service.findEntreprise(idList));
 		return "entreprisesFolder/profil-entreprise";
 	}
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layoutTemplate">
+<div layout:fragment="content">
+	<form class="form-horizontal" action="#" th:action="@{/saveContact}" method="post" th:object="${contactForm}">
+		<div class="form-group">
+			<label class="col-sm-2 control-label" th:text="#{addContact.firstName}"></label>
+			<div class="col-sm-4">
+				<input class="form-control" th:field="*{firstName}" th:placeholder="#{addContact.placeholderFirstName}"/>
+			</div>		
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" th:text="#{addContact.lastName}"></label>
+			<div class="col-sm-4">
+				<input class="form-control" th:field="*{lastName}" th:placeholder="#{addContact.placeholderLastName}"/>
+			</div>		
+		</div>	
+		<div class="form-group">
+			<label class="col-sm-2 control-label" th:text="#{addContact.phone}"></label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" th:field="*{phone}" th:placeholder="#{addContact.placeholderPhone}"/>
+			</div>		
+		</div>	
+		<div class="form-group">
+			<label class="col-sm-2 control-label" th:text="#{addContact.Address}"></label>
+			<div class="col-sm-4">
+				<textarea cols="3" rows="3" class="form-control" th:field="*{address}" 
+							th:placeholder="#{addContact.placeholderAddress}"></textarea>
+			</div>		
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" th:text="#{addContact.gender}"></label>
+			<div class="col-sm-4">
+				<div>
+					<label th:text="#{addContact.male}" ></label>
+					<input type="radio" th:field="*{gender}" value="M" checked="checked"/>
+				</div>
+				<div>
+					<label th:text="#{addContact.female}" ></label>
+					<input type="radio" th:field="*{gender}" value="F"/>
+				</div>				
+			</div>					
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" th:text="#{addContact.email}" th:placeholder="#{addContact.placeholderEmail}"></label>
+			<div class="col-sm-4">
+				<input class="form-control" th:field="*{email}"/>
+			</div>		
+		</div>	
+		<div class="form-group">
+			<label class="col-sm-2 control-label" th:text="#{addContact.password}"></label>
+			<div class="col-sm-4">
+				<input type="password" class="form-control" th:field="*{password}" th:placeholder="#{addContact.placeholderPassword}"/>
+			</div>		
+		</div>	
+		<div class="form-group">
+			<label class="col-sm-2 control-label" th:text="#{addContact.entreprise}"></label>
+			<div class="col-sm-4">
+				<select th:field="*{entreprise.idEntreprise}" class="form-control">
+					<option th:each="en:${listEntreprise}" th:value="${en.idEntreprise}"
+							th:text="${en.name}"></option>
+				</select>
+				
+			</div>		
+		</div>	
+		<input type="hidden" th:field="*{role}" value="contact" />
+				<input type="hidden" th:field="*{image}" value="img"/>	
+			
+			<div class="form-group">
+    			<div class="col-sm-offset-3 col-sm-4 ">
+     		 		<button type="submit" class="btn btn-success" th:text="#{addContact.save}"></button>
+    			</div>
+  			</div>		
+		
+	
+	
+	</form>
+
+</div>
+</html>
